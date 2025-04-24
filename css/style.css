@@ -73,7 +73,7 @@ body {
 	width: 100vw;
 	height: 100vh;
 
-	background: url("../img/game_bg.png") center / cover fixed no-repeat;
+	background: url("../img/game_bg.webp") center / cover fixed no-repeat;
 
 	&::before {
 		content: "";
