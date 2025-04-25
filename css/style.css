@@ -7,7 +7,7 @@ body {
 	color: #fff;
 	font-family: "Montserrat", sans-serif;
 	line-height: 1.3;
-	font-size: 1.75rem;
+	font-size: clamp(1rem, 1.119vw + 0.408rem, 1.75rem);
 	overflow: hidden;
 }
 .container {
@@ -41,16 +41,15 @@ body {
 	}
 }
 .title {
-	font-size: 46px;
+	font-size: clamp(1.5rem, 2.461vw - 0.078rem, 2.875rem);
 	strong {
 		display: block;
 		color: rgb(255, 132, 0);
 	}
-	margin-block-end: 3%;
+	margin-block-end: 15px;
 }
 .text {
-	font-size: 26px;
-	margin-block-end: 35px;
+	margin-block-end: 15px;
 	p {
 		margin-block-end: 10px;
 	}
@@ -58,7 +57,7 @@ body {
 .button {
 	display: block;
 	margin-inline: auto;
-	padding: 20px 83px;
+	padding: 10px 83px;
 	background-color: rgb(255, 132, 0);
 	border-radius: 35px;
 	transition: background-color 0.3s ease-in-out;
@@ -86,8 +85,8 @@ body {
 	}
 }
 .image {
-	width: 150px;
-	height: 150px;
+	width: clamp(4.688rem, 8.389vw - 0.692rem, 9.375rem);
+	aspect-ratio: 1;
 	object-fit: cover;
 	border-radius: 50%;
 	cursor: pointer;

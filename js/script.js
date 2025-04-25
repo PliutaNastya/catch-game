@@ -6,16 +6,6 @@ const gameField = document.getElementById('game-screen')
 const scoreBoard = document.getElementById('score')
 const overlay = document.getElementById('overlay')
 
-const cursor = document.createElement('div')
-cursor.classList.add('cursor')
-gameField.appendChild(cursor)
-
-document.addEventListener('mousemove', (e) => {
-	cursor.style.left = `${e.pageX}px`
-	cursor.style.top = `${e.pageY}px`
-})
-
-
 class Donya {
 	constructor(imageObj, maxStep, maxSpeed, cssObj, level = 1) {
 		this.imageObj = imageObj
@@ -36,10 +26,22 @@ class Donya {
 		this.vy = this.getRandomValue(-this.maxStep, this.maxStep)
 	}
 	updateCoordinates() {
+
 		this.left += this.vx
 		if (this.left < 0 || this.left > 90) this.vx = -this.vx
+
 		this.top += this.vy
 		if (this.top < 0 || this.top > 90) this.vy = -this.vy
+	}
+	setCursor() {
+		const cursor = document.createElement('div')
+		cursor.classList.add('cursor')
+		gameField.appendChild(cursor)
+
+		document.addEventListener('mousemove', (e) => {
+			cursor.style.left = `${e.pageX}px`
+			cursor.style.top = `${e.pageY}px`
+		})
 	}
 	updateHits() {
 		const hitsSpan = document.getElementById('hits')
@@ -88,6 +90,7 @@ class Donya {
 	winLevel() {
 		const congratsDiv = this.renderMessage()
 		congratsDiv.innerText = "🎉 Ти зловив/ла Доню 9 разів! Переходимо на наступний рівень!"
+		clearInterval(this.interval)
 
 		const nextLevelBtn = this.renderMessageButton()
 		nextLevelBtn.innerText = 'Старт!'
@@ -106,6 +109,7 @@ class Donya {
 
 		nextLevelBtn.onclick = () => {
 			gameField.innerHTML = ''
+			this.setCursor()
 			overlay.style.display = "none"
 			this.level = this.level + 1
 			startGame(this.level, this.maxSpeed)
@@ -125,6 +129,7 @@ class Donya {
 
 		beginAgainBtn.onclick = () => {
 			gameField.innerHTML = ''
+			this.setCursor()
 			overlay.style.display = "none"
 			startGame(this.level, this.maxSpeed)
 		}
@@ -205,6 +210,7 @@ startBtn.addEventListener('click', () => {
 	scoreBoard.style.display = 'block'
 
 	startGame()
+	activeDonya.setCursor()
 	isStartGame = true
 })
 
